@@ -14,6 +14,7 @@ def validate_email_format(value):
 
 
 class Usuario(models.Model):
+    objects = None
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
     rol = models.CharField(max_length=50)
@@ -31,6 +32,7 @@ class Usuario(models.Model):
 
 
 class Gasto(models.Model):
+    objects = None
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='gastos')
     categoria = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
@@ -55,6 +57,7 @@ class TipoMovimiento(models.TextChoices):
 
 
 class Movimiento(models.Model):
+    objects = None
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, related_name='movimientos')
     tipo = models.CharField(
         max_length=50,
