@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from api.views import UsuarioViewSet, GastoViewSet, MovimientoViewSet
+from api.views import UsuarioViewSet, GastoViewSet, MovimientoViewSet, home  # Importa las vistas necesarias
 
 router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
@@ -25,6 +25,7 @@ router.register(r'gastos', GastoViewSet)
 router.register(r'movimientos', MovimientoViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  # Importar rutas de la API.
+    path('', home, name='home'),  # Ruta para la página principal
+    path('admin/', admin.site.urls),  # Ruta para la administración
+    path('api/', include(router.urls)),  # Incluye las rutas generadas por DRF
 ]
